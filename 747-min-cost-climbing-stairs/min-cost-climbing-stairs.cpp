@@ -2,7 +2,7 @@ class Solution {
 public:
     int solve(vector<int>&cost,int n,int a,vector<int>&dp){
         //base case
-        if(n==0 || n==1) return cost[n];
+        if(n<0) return 0;
         if(n!=a && dp[n]!=-1) return dp[n];
         int left=solve(cost,n-1,a,dp);
         int right=solve(cost,n-2,a,dp);
