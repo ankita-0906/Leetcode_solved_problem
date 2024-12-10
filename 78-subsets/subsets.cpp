@@ -1,19 +1,22 @@
 class Solution {
 public:
-    vector<vector<int>> subsets(vector<int>& nums) {
-        int n =nums.size();
-        long long subset=pow(2,n);
-        vector<vector<int>>ans;
-        
-        for(long i=0;i<subset;i++){
-            vector<int>output;
-            for(int j=0;j<n;j++){
-             if(i&(1<<j)) 
-             output.push_back(nums[j]);
-            
-            }
-            ans.push_back(output);
+    void solve(vector<int>& nums,int n,int i,vector<vector<int>>&op,vector<int>&output){
+        if(i>=n){
+            op.push_back(output);
+            return;
         }
-        return ans;
+         output.push_back(nums[i]);
+         solve(nums,n,i+1,op,output);
+         output.pop_back();
+         solve(nums,n,i+1,op,output);
+
+    }
+    vector<vector<int>> subsets(vector<int>& nums) {
+        int n=nums.size();
+        vector<int>output;
+        vector<vector<int>>op;
+        solve(nums,n,0,op,output);
+        
+        return op;
     }
 };
