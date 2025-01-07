@@ -11,16 +11,24 @@
 class Solution {
 public:
     bool isPalindrome(ListNode* head) {
-        vector<int>arr;
-        ListNode*temp=head;
-        while(temp!=NULL){
-            arr.push_back(temp->val);
-            temp=temp->next;
+        ListNode*slow=head,*fast=head;
+
+        //finding the middle 1
+        while(fast->next!=NULL && fast->next->next!=NULL){
+            slow=slow->next; fast=fast->next->next;
         }
-        int i=0,j=arr.size()-1;
-        while(i<=j){
-         if(arr[i]!=arr[j]) return false;
-         i++;j--;
+
+        // reverse the LL from next to middle 1 to end
+
+        ListNode*prev=NULL,*pre=slow->next,*fut=slow->next;
+        while(pre){
+            fut=fut->next;
+            pre->next=prev; prev=pre; pre=fut;
+        }
+        slow=head;
+        while(prev){
+            if(slow->val!=prev->val) return false;
+            slow=slow->next;prev=prev->next;
         }
         return true;
     }
