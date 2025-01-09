@@ -28,7 +28,7 @@ public:
             last=last->next;
             i++;
         }
-        if(prev!=NULL)
+       
         prev->next=NULL;
         head=last;
         return head;
