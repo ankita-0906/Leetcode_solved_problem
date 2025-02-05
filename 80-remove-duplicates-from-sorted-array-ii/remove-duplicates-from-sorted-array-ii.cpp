@@ -6,18 +6,12 @@ public:
         while(j<n){
           if(nums[i]==nums[j] && cnt<2){
             cnt++;
-            if(cnt<3){
             nums[i+cnt-1]=nums[j];
-          }
+          
           } 
           else if(nums[i]!=nums[j]){
-            if(cnt>2){
-                nums[i+cnt-1]=nums[j];i=i+cnt-1;
-            }
-            else {
-                nums[i+cnt]=nums[j];
-                 i=i+cnt;
-            }
+            nums[i+cnt]=nums[j];
+            i=i+cnt;
             cnt=1;
           }
           
