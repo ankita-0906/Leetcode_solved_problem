@@ -5,7 +5,7 @@ public:
         while(ms.size()>1 && *ms.begin()<k){
          long long x=*ms.begin();  ms.erase(ms.begin());
          long long y=*ms.begin(); ms.erase(ms.begin());
-         long long ans = x *2+  y;
+         long long ans =min(x, y) * 2 + max(x, y);
 
          cnt++;
          ms.insert(ans);
