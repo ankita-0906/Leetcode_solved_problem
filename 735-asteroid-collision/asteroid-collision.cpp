@@ -22,13 +22,13 @@ public:
 
             if(abs(ans.back())==abs(s[i])) {
                ans.pop_back();
-               i++;
+               i++; break;
             }
             else if(abs(ans.back())<abs(s[i])){
               ans.pop_back();
             }
             else{
-                i++;
+                i++; break;
             }
           }
         } 
