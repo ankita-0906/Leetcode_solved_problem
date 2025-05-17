@@ -6,11 +6,11 @@ public:
         });
         int n=arr.size();
         vector<vector<int>>ans;int cnt=0;
-        for(int i=0;i<n;i++){
-          if(i==0) ans.push_back(arr[i]);
+        int end=arr[0][1];
+        for(int i=1;i<n;i++){
 
-          else if(arr[i][0]<ans.back()[1]) cnt++;
-          else ans.push_back(arr[i]);
+           if(arr[i][0]<end) cnt++;
+          else end=arr[i][1];
         }
         return cnt;
     }
