@@ -12,7 +12,7 @@ public:
              width=next_small-prev_small-1;
             maxarea=max(maxarea,width*ele);
           }
-          st.push(i);
+          if(i<n)st.push(i);
           i++;
         }
         return maxarea;
@@ -24,22 +24,20 @@ public:
     int maximalRectangle(vector<vector<char>>& matrix) {
         int n=matrix.size(), m=matrix[0].size();
         
-        vector<vector<int>>pre(n,vector<int>(m));
+        vector<int>row(m,0);
+         int maxarea=0;
 
-        for(int j=0;j<m;j++){
-            int sum=0;
-          for(int i=0;i<n;i++){
-             if(matrix[i][j]!='0') sum=sum+matrix[i][j]-'0';
-             else sum=0;
-             pre[i][j]=sum;
-            
-          }
-          
-        }
-        int maxarea=0;
         for(int i=0;i<n;i++){
-           maxarea=max(maxarea,histo(pre[i]));
+            for(int j=0;j<m;j++){
+                if(matrix[i][j]=='1') row[j]=row[j]+1;
+                else row[j]=0;
+            }
+            maxarea=max(maxarea,histo(row));
         }
+
+       
+       
+       
         return maxarea;
     }
 };
