@@ -1,12 +1,10 @@
 class Solution {
 public:
     void solve(vector<int>& candidates, int index, int target, vector<int>& path, vector<vector<int>>& res) {
-        if (target == 0) {
-            res.push_back(path);
-            return;
+        if(index==candidates.size()){
+            if(target==0) res.push_back(path);
+            return ;
         }
-
-        if (index >= candidates.size()) return;
 
         // Pick the current element (only if it doesn’t exceed target)
         if (candidates[index] <= target) {
