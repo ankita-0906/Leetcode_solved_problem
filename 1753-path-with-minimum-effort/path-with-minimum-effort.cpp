@@ -6,7 +6,7 @@ public:
 
         priority_queue<pair<int,pair<int,int>>, vector<pair<int,pair<int,int>>>,
         greater<pair<int,pair<int,int>>>>pq;
-
+        vis[0][0]=0;
         pq.push({0,{0,0}});
         while(!pq.empty()){
             auto [dist, coord] = pq.top();
@@ -14,7 +14,7 @@ public:
             pq.pop();
              int drow[]={-1,0,1,0};
              int dcol[]={0,-1,0,1};
-            if(row==n-1 && col ==m-1) return dist;
+            
              for(int i=0;i<4;i++){
                 int newrow=row+drow[i];
                 int newcol=col+dcol[i];
