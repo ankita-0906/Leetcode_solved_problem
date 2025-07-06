@@ -8,29 +8,33 @@ public:
         while(i<n){
           if(ans.size()==0)  {
             ans.push_back(s[i]);
-            i++;
-          }
+           }
           else if(ans.back()*s[i]>0) {
             ans.push_back(s[i]);
-            i++;
-          }
+           }
           else if(ans.back()*s[i] <0 && ans.back()<0){
              ans.push_back(s[i]);
-            i++;
           }
-          while(i<n && ans.size()!=0 && ans.back()*s[i] <0 && ans.back()>0){
+          
+          else{
+            bool destroyed=false;
+          while( ans.size()!=0 && ans.back()*s[i] <0 && ans.back()>0){
 
             if(abs(ans.back())==abs(s[i])) {
-               ans.pop_back();
-               i++; break;
+               ans.pop_back();destroyed=true;
+                break;
             }
             else if(abs(ans.back())<abs(s[i])){
               ans.pop_back();
             }
             else{
-                i++; break;
+                destroyed=true;
+                break;
             }
           }
+          if(destroyed==false) ans.push_back(s[i]);
+          }
+          i++;
         } 
         return ans;
     }
