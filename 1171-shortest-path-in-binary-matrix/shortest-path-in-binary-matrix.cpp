@@ -14,7 +14,7 @@ public:
             int row=index.first;
             int col=index.second;
             pq.pop();
-            if(row==n-1 && col==n-1) return vis[row][col];
+           // if(row==n-1 && col==n-1) return vis[row][col];
             for(int i=-1;i<=1;i++){
                 for(int j=-1;j<=1;j++){
                     int newrow=row+i;
