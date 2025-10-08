@@ -12,12 +12,17 @@ public:
         }
 
         for(int i=0;i<m;i++){
-            int res=0;
-            for(int j=0;j<n;j++){
-                if(prefix[j]<=queries[i]) res=j+1;
-                else break;
+           int low=0,heigh=n-1,res=0;
+           while(low<=heigh){
+            int mid=(low+heigh)/2;
+            if(prefix[mid]<=queries[i]) {
+                res=mid+1; low=mid+1;
             }
-            ans[i]=res;
+            else heigh=mid-1;
+           }
+           ans[i]=res;
+            
+            
         }
         return ans;
     }
