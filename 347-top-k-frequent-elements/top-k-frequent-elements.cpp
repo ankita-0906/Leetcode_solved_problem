@@ -8,8 +8,8 @@ public:
          i++;
         }
         priority_queue<pair<int,int>,vector<pair<int,int>>,greater<pair<int,int>>>q;
-       for(auto it=mp.begin();it!=mp.end();it++){
-          q.push({it->second,it->first});
+       for(auto it:mp){
+          q.push({it.second,it.first});
           if(q.size()>k) q.pop();
        }
        vector<int>ans;
