@@ -1,41 +1,26 @@
 class Solution {
 public:
-    vector<int> asteroidCollision(vector<int>& s) {
-        vector<int>ans;
-        int n=s.size();
-        
-        int i=0;
-        while(i<n){
-          if(ans.size()==0)  {
-            ans.push_back(s[i]);
-           }
-          else if(ans.back()*s[i]>0) {
-            ans.push_back(s[i]);
-           }
-          else if(ans.back()*s[i] <0 && ans.back()<0){
-             ans.push_back(s[i]);
-          }
-          
-          else{
-            bool destroyed=false;
-          while( ans.size()!=0 && ans.back()*s[i] <0 && ans.back()>0){
+    vector<int> asteroidCollision(vector<int>& arr) {
+        int n=arr.size();
+        stack<int>st;
+        for(int i=0;i<n;i++){
+            if(st.empty()) st.push(arr[i]);
+            else if(st.top()*arr[i]>0) st.push(arr[i]);
+            else if(st.top()<0)st.push(arr[i]);
+            else if(abs(st.top())>abs(arr[i])) continue;
+            else if ( abs(st.top())==abs(arr[i])) st.pop();
+            else {
+                while(!st.empty() && st.top()*arr[i]<0 && abs(st.top())<abs(arr[i])) st.pop();
+                i=i-1;
+            }
+        }
 
-            if(abs(ans.back())==abs(s[i])) {
-               ans.pop_back();destroyed=true;
-                break;
-            }
-            else if(abs(ans.back())<abs(s[i])){
-              ans.pop_back();
-            }
-            else{
-                destroyed=true;
-                break;
-            }
-          }
-          if(destroyed==false) ans.push_back(s[i]);
-          }
-          i++;
-        } 
+        vector<int>ans;
+        while(!st.empty()){
+            ans.push_back(st.top());
+            st.pop();
+        }
+        reverse(ans.begin(),ans.end());
         return ans;
     }
 };
