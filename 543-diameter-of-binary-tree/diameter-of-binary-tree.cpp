@@ -15,14 +15,14 @@ public:
         if(root==NULL) return 0;
         int left=height(root->left,diameter);
         int right=height(root->right,diameter);
-        diameter=max(diameter,left+right);
+        diameter=max(diameter,left+right+1);
         return 1+max(left,right);
     }
 
     int diameterOfBinaryTree(TreeNode* root) {
         int diameter=0;
         height(root,diameter);
-        return diameter;
+        return diameter-1;
 
     }
 };
